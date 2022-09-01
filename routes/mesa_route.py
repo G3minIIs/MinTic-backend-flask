@@ -1,34 +1,29 @@
 from flask import jsonify, request, Blueprint
 from controllers.mesa_controller import MesaController
 
-#lo establecemos como app de blue print (coleccion de rutas)
-mesa_Module = Blueprint('mesa',__name__)
+mesa_Module = Blueprint('mesa',__name__) #lo establecemos como app de blue print (coleccion de rutas)
 
-#establecemos el controlador
-controller = MesaController()
+controller = MesaController() #establecemos el controlador
 
-@mesa_Module.get('/') #aca tenemos el listar
+@mesa_Module.get('/') # para ver todas las mesas
 def get_mesas():
     return jsonify(controller.get())
 
-@mesa_Module.post('/') #Crear
+@mesa_Module.post('/') # metodo crear mesas
 def createMesas():
     result = controller.create(request.get_json())
     return jsonify(result), 201
 
-
-@mesa_Module.get('/<string:id>') #listar por ID
+@mesa_Module.get('/<string:id>') # metodo listar por ID
 def ver_mesa(id):
     return jsonify(controller.getById(id))
 
-
-@mesa_Module.put('/<string:id>')#actualizar
+@mesa_Module.put('/<string:id>')# metodo actualizar
 def upd_mesa(id):
     controller.update(id, request.get_json())
     return jsonify({}), 204
 
-
-@mesa_Module.delete('/<string:id>')#eliminar
+@mesa_Module.delete('/<string:id>')# metodo eliminar
 def del_mesa(id):
     controller.delete(id)
     return jsonify({}), 204

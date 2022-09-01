@@ -11,14 +11,16 @@ class CandidatoController():
         self.repo = CandidatoRepository()
         self.repo_partido = PartidoRepository()
         
-    def get(self): 
+    def get(self): #metodo para visualisar todos los candidatos
             return self.repo.get_all()
-    def getById(self,id): #metodo para ver un candidato mediante el id
+        
+    def getById(self, id): #metodo para ver un candidato mediante el id
         return self.repo.get_by_id(id) 
-    def create(self,data): # creamos el candidato , partido_id
+    
+    def create(self, data, partido_id): # creamos el candidato , partido_id
         candidato = CandidatoModel(data) #creamos candidato
-        '''partido = self.repo_partido.get_by_id(partido_id) #partido_id
-        candidato.partido = PartidoModel(partido)'''
+        partido = self.repo_partido.get_by_id(partido_id) #partido_id
+        candidato.partido = PartidoModel(partido)
         return {
             "id":self.repo.save(candidato) #llamamos al repo en el metodo Save
         }
