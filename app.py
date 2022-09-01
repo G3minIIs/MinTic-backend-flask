@@ -3,6 +3,8 @@ from flask_cors import CORS
 from dotenv import dotenv_values
 from routes.mesa_route import mesa_Module
 from routes.partido_route import partido_Module
+from routes.candidato_route import candidato_Module
+from routes.resultados_route import resultados_module
 
 config = dotenv_values('.env') #instanciamos las variables de entonro
 app = Flask(__name__)
@@ -11,6 +13,8 @@ cors = CORS(app)
 # registramos Blue print
 app.register_blueprint(mesa_Module, url_prefix="/mesa")  # Url_prefix = path
 app.register_blueprint(partido_Module,url_prefix="/partido")
+app.register_blueprint(candidato_Module, url_prefix="/candidato")
+app.register_blueprint(resultados_module, url_prefix="/resultado")
 
 @app.route('/')
 def hello_word():

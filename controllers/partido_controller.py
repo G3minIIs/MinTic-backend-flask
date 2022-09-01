@@ -1,7 +1,7 @@
 from models.partido_model import PartidoModel
 from db.partido_repository import PartidoRepository
 
-class PartidoControler():
+class PartidoController():
     
     def __init__(self):
         self.repo = PartidoRepository()
@@ -13,13 +13,13 @@ class PartidoControler():
         return self.repo.get_by_id(id)
     
     def create(self,data):
-        mesa = PartidoModel(data) #creamos Mesa
+        partido = PartidoModel(data) #creamos partido
         return {
-            "id":self.repo.save(mesa) #llamamos al repo en el metodo Save
+            "id":self.repo.save(partido) #llamamos al repo en el metodo Save
         }
     def update(self, id,  data):
-        mesa = PartidoModel(data) #cremos mesa
-        self.repo.update(id, mesa)#llamamos update y pasamos los valores
+        partido = PartidoModel(data) #cremos mesa
+        self.repo.update(id, partido)#llamamos update y pasamos los valores
     
     def delete(self,id):
         return self.repo.delete(id) #llamamos Delete y pasamos ID

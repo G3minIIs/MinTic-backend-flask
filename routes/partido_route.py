@@ -1,11 +1,11 @@
 from flask import jsonify, request, Blueprint
-from controllers.partido_controller import PartidoControler
+from controllers.partido_controller import PartidoController
 
 #lo establecemos como app de blue print (coleccion de rutas)
 partido_Module = Blueprint('partido',__name__)
 
 #establecemos el controlador
-controller = PartidoControler()
+controller = PartidoController()
 
 @partido_Module.get('/') #aca tenemos el listar
 def get_partido():
