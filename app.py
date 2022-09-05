@@ -15,7 +15,7 @@ cors = CORS(app)
 app.register_blueprint(mesa_Module, url_prefix="/mesa")
 app.register_blueprint(partido_Module,url_prefix="/partido")
 app.register_blueprint(candidato_Module, url_prefix="/candidato")
-app.register_blueprint(resultado_Module, url_prefix="/resultado")
+app.register_blueprint(resultado_Module, url_prefix="/resultado") 
 
 @app.route('/')
 def hello_word():

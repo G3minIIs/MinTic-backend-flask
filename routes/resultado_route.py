@@ -1,6 +1,8 @@
 from flask import jsonify,request, Blueprint
 from controllers.resultado_controller import ResultadoController
 
+
+
 #lo establecemos como app de blue print (coleccion de rutas)
 resultado_Module = Blueprint('resultado',__name__)
 
@@ -32,3 +34,22 @@ def upd_resultado(id):
 def del_resultado(id):
     controller.delete(id)
     return jsonify({}), 204
+
+                    # rutas de reportes
+                    
+@resultado_Module.get('/reportes/total') #listar todos resultados de los candidatos
+def get_reporte_total():
+    return jsonify(controller.get_total())
+
+@resultado_Module.get('/reportes/total/mesa') #total de cada uno de los candidatos por mesa
+def get_reporte_mesa():
+    return jsonify(controller.get_total_mesa(request.args.to_dict()))
+
+@resultado_Module.get('/reportes/total/candidato') #aca tenemos el total de votos por candidato
+def get_reporte_votos_candidato():
+    return jsonify(controller.get_total_candidato(request.args.to_dict()))
+
+
+@resultado_Module.get('/reportes/total/mesa/candidato') #aca tenemos el total de votos de candidato en una mesa
+def get_reporte_candidato_mesa():
+    return jsonify(controller.get_total_mesa_candidato(request.args.to_dict()))
